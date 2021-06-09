@@ -1,6 +1,5 @@
 # 동적 페이지 스크래핑 - 할인하는 영화만 가져오기(제목, 할인 전 가격, 할인 후 가격,링크)
 
-import requests
 import time
 from bs4 import BeautifulSoup
 from selenium import webdriver
