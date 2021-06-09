@@ -5,8 +5,14 @@ import time
 from bs4 import BeautifulSoup
 from selenium import webdriver
 
+# headless 옵션 설정
+options = webdriver.ChromeOptions()
+options.headless = True
+options.add_argument("window-size=1920x1080")
+options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36")
+
 url = "https://play.google.com/store/movies/top"
-browser = webdriver.Chrome()
+browser = webdriver.Chrome(options=options)
 browser.get(url)
 
 # 스크롤 내려서 영화 목록 불러오기
@@ -28,6 +34,9 @@ while True:
         break
 
     prevHeight = curHeight
+
+# 스크린샷 찍기
+browser.get_screenshot_as_file("google_movie.png")
 
 soup = BeautifulSoup(browser.page_source, "lxml")
 
